@@ -94,7 +94,7 @@ class ALUMarketScoop:
     }
     return index_mapping[region][index_number]
 
-def get_movers(self):
+  def get_movers(self):
     region = self.regional_location()
     region, index_name = self.index_name(region)
     index_query = self.index_region_mapping(region, index_name)
@@ -149,7 +149,7 @@ def get_movers(self):
     time.sleep(3)
     self.clear_terminal()
     os.system(f"cat {file_name}")
-
+    
 
 if __name__ == "__main__":
   market_scoop = ALUMarketScoop()
