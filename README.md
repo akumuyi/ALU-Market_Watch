@@ -1,4 +1,3 @@
-```markdown
 # ALU Market Scoop
 
 ## Overview
@@ -49,4 +48,3 @@ Jules Gatete (j.gatete@alustudent.com)
 Ademola Oshingbesan (a.oshingbes@alustudent.com)
 Merveille Kangabire (m.kangabire@alustudent)
 Oden Emmanuel (e.oden@alustudent.com)
-```
