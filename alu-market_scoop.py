@@ -66,3 +66,31 @@ class ALUMarketScoop:
     # time.sleep(1)
     self.clear_terminal()
     return region, index_name
+
+  def index_region_mapping(self, region, index_number):
+    index_mapping = {
+        "americas": {
+            "1": "indu:ind",
+            "2": "spx:ind",
+            "3": "ccmp:ind",
+            "4": "nya:ind",
+            "5": "sptsx:ind"
+        },
+        "emea": {
+            "1": "sx5e:ind",
+            "2": "ukx:ind",
+            "3": "dax:ind",
+            "4": "cac:ind",
+            "5": "ibex:ind"
+        },
+        "apac": {
+            "1": "nky:ind",
+            "2": "tpx:ind",
+            "3": "hsi:ind",
+            "4": "shsz300:ind",
+            "5": "as51:ind",
+            "6": "mxap:ind"
+        }
+    }
+    return index_mapping[region][index_number]
+
