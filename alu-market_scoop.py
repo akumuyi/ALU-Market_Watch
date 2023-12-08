@@ -94,3 +94,63 @@ class ALUMarketScoop:
     }
     return index_mapping[region][index_number]
 
+def get_movers(self):
+    region = self.regional_location()
+    region, index_name = self.index_name(region)
+    index_query = self.index_region_mapping(region, index_name)
+
+    querystring = {"id": index_query, "template": "INDEX"}
+    response = requests.get(self.base_url,
+                            headers=self.headers,
+                            params=querystring)
+    resp_json = response.json()
+
+    print("Select a category:\n", "Active\n", "Laggards\n", "Leaders\n")
+    category = input("Enter category: ").lower()
+
+    try:
+      data = resp_json[category]
+    except KeyError:
+      print(f"Sorry, the selected index is not available at the moment, try again later.")
+      return
+    file_name = f"{region}{index_query}_market_watch{category}.csv"
+
+    with open(file_name, 'w', newline='') as csvfile:
+      column_writer = csv.writer(csvfile, delimiter='|')
+      column_keys = list(resp_json[category][0].keys())
+      public_columns = [
+          "symbol", "exchange", "name", "last", "yearhigh", "dayhigh",
+          "volume", "yearlow", "daylow", "pctchangeytd"
+      ]
+      private_columns = [
+          column for column in column_keys if column.lower() in public_columns
+      ]
+      column_writer.writerow(private_columns)
+
+    with open(file_name, 'a', newline='') as csvfile:
+      row_len = len(resp_json[category])
+      row_writer = csv.writer(csvfile,
+                              delimiter=' ',
+                              quotechar='-',
+                              quoting=csv.QUOTE_NONNUMERIC)
+      for row in range(row_len):
+        row_writer.writerow([
+            resp_json[category][row]['symbol'],
+            resp_json[category][row]['exchange'],
+            resp_json[category][row]['name'], resp_json[category][row]['last'],
+            resp_json[category][row]['yearHigh'],
+            resp_json[category][row]['dayHigh'],
+            resp_json[category][row]['volume'],
+            resp_json[category][row]['yearLow'],
+            resp_json[category][row]['dayLow'],
+            resp_json[category][row]['pctChangeYTD']
+        ])
+    print(f"File successfully saved as {file_name}")
+    time.sleep(3)
+    self.clear_terminal()
+    os.system(f"cat {file_name}")
+
+
+if __name__ == "__main__":
+  market_scoop = ALUMarketScoop()
+  market_scoop.get_movers()
