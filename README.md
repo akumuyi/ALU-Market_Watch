@@ -41,11 +41,12 @@ Special thanks to API Dojo for providing the Bloomberg Market and Financial News
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+
 
 ## Team Members
 Abiodun Kumuyi (a.kumuyi@alustudent.com)
 Jules Gatete (j.gatete@alustudent.com)
 Ademola Oshingbesan (a.oshingbes@alustudent.com)
-Merveille Kangabire (m.kangabire@alustudent.com)
-
+Merveille Kangabire (m.kangabire@alustudent)
+Oden Emmanuel (e.oden@alustudent.com)
+```
